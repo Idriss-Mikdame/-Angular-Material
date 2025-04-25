@@ -1,0 +1,23 @@
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.drawer-container {
+  height: 100vh;
+  margin-top: 64px; /* ارتفاع التولبار */
+}
+
+.drawer {
+  width: 220px; /* حجم القائمة الجانبية */
+}
+
+.drawer-content {
+  padding: 16px;
+}
+.spacer {
+  flex: 1 1 auto;
+}
