@@ -3,33 +3,36 @@
     <mat-icon>menu</mat-icon> <!-- كان عندك خطأ في كلمة menu (menue) -->
   </button>
   <span class="spacer"></span>
-  <button mat-button routerLink="/home">Home</button>
-  <button mat-button routerLink="/profile">Profile</button>
-  <button mat-button [matMenuTriggerFor]="importMenu" >
-    Import <mat-icon iconPositionEnd>arrow_drop_down</mat-icon>
+  <button mat-button routerLink="/admin/home">Home</button>
+  <button mat-button routerLink="/admin/profile">Profile</button>
+  <button *ngIf="authServices.roles.includes('ADMIN')" mat-button [matMenuTriggerFor]="importMenu" >
+    Import <mat-icon iconPositionEndn>arrow_drop_down</mat-icon>
   </button>
   <mat-menu #importMenu="matMenu">
-    <button mat-menu-item routerLink="/loadStudents">Load Student</button>
-    <button mat-menu-item routerLink="/loadPayments">Load Payment</button>
+    <button mat-menu-item routerLink="/admin/loadStudents">Load Student</button>
+    <button mat-menu-item routerLink="/admin/loadPayments">Load Payment</button>
   </mat-menu>
-  <button mat-raised-button color="accent" routerLink="/login">Login</button>
+  <button mat-button *ngIf="authServices.authenticated==true">
+    {{authServices.username}}
+  </button>
+  <button mat-raised-button color="accent" (click)="logout()">Logout</button>
 </mat-toolbar>
 
 <mat-drawer-container class="drawer-container">
   <mat-drawer style="background-color: rgba(165,218,243,0.76)" #drawer mode="side" position="start" opened="true" class="drawer">
     <mat-nav-list>
       <mat-list-item>
-        <button mat-button routerLink="/dashboard">
+        <button mat-button routerLink="/admin/dashboard">
           <mat-icon>dashboard</mat-icon> Dashboard
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button routerLink="/students">
+        <button mat-button routerLink="/admin/students">
           <mat-icon>dashboard</mat-icon> Students
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-button routerLink="/payments">
+        <button mat-button routerLink="/admin/payments">
           <mat-icon>dashboard</mat-icon> Payments
         </button>
       </mat-list-item>
